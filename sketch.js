@@ -16,6 +16,7 @@ function setup() {
         }
     }
     current = grid[0];
+    frameRate(7);
 
 }
 
@@ -26,11 +27,17 @@ function draw() {
     }
 
     current.visited = true;
+    current.highlight();
+    // Step 1
     var next = current.checkNeighbours();
     if (next) {
         next.visited = true;
+
+        // Step 3
+        removeWalls(current, next);
+        //Step 4
         current = next;
-    }else{
+    } else {
         noLoop();
         console.log("No more neighbours...");
     }
@@ -68,7 +75,8 @@ function Cell(i, j) {
         }
 
         if (this.visited) {
-            fill(123, 0, 199);
+            noStroke();
+            fill(123, 0, 199,123);
             rect(x, y, w, w);
         }
     }
@@ -100,4 +108,44 @@ function Cell(i, j) {
             return undefined;
         }
     }
+    this.highlight = function(){
+        let x = this.i*w;
+        let y = this.j*w;
+        noStroke();
+        fill(0,47,199);
+        rect(x,y,w,w);
+    }
 }
+
+
+function removeWalls(a, b) {
+    var x = a.i - b.i;
+console.log(x);
+    if (x === 1) {
+        a.walls[3] = false;
+        b.walls[1] = false;
+    } else if (x === -1) {
+        a.walls[1] = false;
+        b.walls[3] = false;
+    }
+
+    var y = a.j - b.j;
+    if (y === 1) {
+        a.walls[0] = false;
+        b.walls[2] = false;
+    } else if (y === -1) {
+        a.walls[2] = false;
+        b.walls[0] = false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
