@@ -23,7 +23,7 @@ function Cell(i, j) {
 
         if (this.visited) {
             noStroke();
-            fill(123, 0, 199,123);
+            fill(123, 0, 199, 123);
             rect(x, y, w, w);
         }
     }
@@ -55,11 +55,11 @@ function Cell(i, j) {
             return undefined;
         }
     }
-    this.highlight = function(){
-        let x = this.i*w;
-        let y = this.j*w;
+    this.highlight = function() {
+        let x = this.i * w;
+        let y = this.j * w;
         noStroke();
-        fill(0,47,199);
-        rect(x,y,w,w);
+        fill(0, 47, 199);
+        rect(x, y, w, w);
     }
 }

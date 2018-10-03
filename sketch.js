@@ -42,7 +42,7 @@ function draw() {
         removeWalls(current, next);
         //Step 4
         current = next;
-    } else if(stack.length>0){
+    } else if (stack.length > 0) {
         console.log("No more neighbours...");
         current = stack.pop();
 
